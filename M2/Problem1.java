@@ -18,6 +18,10 @@ public class Problem1 {
         System.out.println("Odds output:");
         //hint: use the arr variable; don't diretly use the a1-a4 variables
         //TODO add/edit code here
+        //iaa47
+        //9/25/23
+        // In this problem I am taking the numbers in the arrays and creating an if statement
+        // that removes the odd numbers from the arrays.
         for (int num : arr) {
             if (num % 2 != 0) {
                 System.out.println(num + " ");

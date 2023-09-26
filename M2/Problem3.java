@@ -18,6 +18,12 @@ public class Problem3 {
         System.out.println("Processing Array:" + Arrays.toString(arr));
         //your code should set the indexes of this array
         Object[] output = new Object[arr.length];
+        //iaa47
+        //9/25/2023
+        //To create the positive conversion I created an if statement that takes the integer in the array and if it is negative 
+        //I run it through the math.abs function that takes the number and returns the absolute zero of that integer.  
+        //Then I did the same for the two arrays containing doubles.  For the string value, I had to rewrite the string values with an 
+        //if statement that if the string has a "-" it is to be replaced with a blank value (" ") to make it positive.
         for (int z = 0; z < arr.length; z++) {
             if (arr[z] instanceof Number) {
                 if (((Number) arr[z]).doubleValue() < 0) {

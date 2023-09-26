@@ -18,6 +18,11 @@ public class Problem2 {
         double total = 0;
         String totalOutput = "";
         //hint: use the arr variable; don't diretly use the a1-a4 variables
+        //iaa47
+        //9/25/2023
+        //I created an if statement that takes each number and prints it to the total so that all the numbers 
+        //in the array add up all together and give us the output.  I took totalOutput and changed the format 
+        //of the Output so that it sets the output to a hundredth decimal place using %.2f.
         for(double num : arr){
             total += num;
         }
