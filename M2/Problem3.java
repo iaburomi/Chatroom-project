@@ -18,8 +18,27 @@ public class Problem3 {
         System.out.println("Processing Array:" + Arrays.toString(arr));
         //your code should set the indexes of this array
         Object[] output = new Object[arr.length];
+        for (int z = 0; z < arr.length; z++) {
+            if (arr[z] instanceof Number) {
+                if (((Number) arr[z]).doubleValue() < 0) {
+                    if (arr[z] instanceof Integer) {
+                        output[z] = Math.abs((Integer) arr[z]);
+                    } else if (arr[z] instanceof Double) {
+                        output[z] = Math.abs((Double) arr[z]);
+                    }
+                } else {
+                    output[z] = arr[z];
+                }
+            } else if (arr[z] instanceof String) {
+                String str = (String) arr[z];
+                if (str.contains("-")) {
+                    str = str.replace("-", "");
+                }
+                output[z] = str;
+            }
+        }
         //hint: use the arr variable; don't diretly use the a1-a4 variables
-        //TODO convert each value to positive
+
         //set the result to the proper index of the output array
         //hint: don't forget to handle the data types properly, the result datatype should be the same as the original datatype
         
