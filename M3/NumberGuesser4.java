@@ -1,3 +1,4 @@
+package M3;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -125,10 +126,32 @@ public class NumberGuesser4 {
             return;
         }
         System.out.println("You guessed " + guess);
-        if (guess == number) {
+        //iaa47
+        //10/2/23
+        int cold = 10;
+        int warm = 5;
+        int hot = 2;
+        int difference = Math.abs(number - guess);
+        if (difference <= hot){
+            System.out.println("HOT");
+        }else if (difference<= warm){
+            System.out.println("warm");
+        }else if (difference <= cold){
+            System.out.println("cold");
+        }else{
+                System.out.println("Freezing cold");
+        //I added the above code to create values that output if the number is hot (between 2 numbers),warm(between 5 numbers), 
+        //or cold between 10 numbers.  
+        } if (guess == number) {
             win();
             pickNewRandom = true;
-        } else {
+        //Added Code below
+        } if(number > guess){   
+                System.out.println("Higher");
+        }if(number < guess){
+                System.out.println("Lower");
+        //I added the two if statements above to output higher or lower after the user inputs a guess.
+            } else {
             System.out.println("That's wrong");
             strikes++;
             if (strikes >= maxStrikes) {
@@ -137,6 +160,7 @@ public class NumberGuesser4 {
             }
         }
     }
+    
 
     private int strToNum(String message) {
         int guess = -1;
