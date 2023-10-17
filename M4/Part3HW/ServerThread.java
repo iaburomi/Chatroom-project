@@ -65,12 +65,17 @@ public class ServerThread extends Thread {
     private boolean processCommand(String message) {
         // coin toss command
         //iaa47
+        //This is a Flip Coin Code written by an if statement that returns the output of the randomly generated side of the coin.  
+        //It allows the user to use the commands flip, toss, or coin function so that it triggers the coin toss.
         if (message.equalsIgnoreCase("flip") || message.equalsIgnoreCase("toss") || message.equalsIgnoreCase("coin")) {
             String result = flipCoin();
             server.broadcast(String.format("User[%d] flipped a coin and got %s", getId(), result), getId());
             return true;
         }
         // dice roll command
+        //iaa47
+        //This code is an if statement saying that if the user types Roll in the terminal it will trigger the dice method to 
+        //produce a random number and then print a return statement that tells the user what number he got.
         if (message.matches("^roll \\d+d\\d+$")) {
             String[] tokens = message.split(" ");
             String[] diceTokens = tokens[1].split("d");
@@ -82,12 +87,14 @@ public class ServerThread extends Thread {
         }
         return false;
     }
-
+    //iaa47
+    //This is the second part of the flip coin code which picks a random side of the coin.
     private String flipCoin() {
         Random random = new Random();
         return random.nextBoolean() ? "heads" : "tails";
     }
-
+    //iaa47
+    //This code is the rollDice method that produces a random number on the die.
     private String rollDice(int numDice, int numSides) {
         Random random = new Random();
         int total = 0;
