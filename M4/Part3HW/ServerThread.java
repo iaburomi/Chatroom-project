@@ -64,6 +64,7 @@ public class ServerThread extends Thread {
 
     private boolean processCommand(String message) {
         // coin toss command
+        //iaa47
         if (message.equalsIgnoreCase("flip") || message.equalsIgnoreCase("toss") || message.equalsIgnoreCase("coin")) {
             String result = flipCoin();
             server.broadcast(String.format("User[%d] flipped a coin and got %s", getId(), result), getId());
