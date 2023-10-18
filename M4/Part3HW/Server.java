@@ -69,6 +69,8 @@ public class Server {
                     return true;
                 }
             }
+            //roll dice
+            //iaa47
         } else if (message.matches("^roll \\d+d\\d+$")) {
             String[] tok = message.split(" ");
             String[] diceTok = tok[1].split("d");
@@ -77,6 +79,8 @@ public class Server {
             String result = rollDice(numDice, numSides);
             broadcast(String.format("User[%d] rolled %s and got %s", clientId, tok[1], result), clientId);
             return true;
+            //flip coin
+            //iaa47
         } else if (message.equalsIgnoreCase("flip") || message.equalsIgnoreCase("toss") || message.equalsIgnoreCase("coin")) {
             Random random = new Random();
             String result = random.nextBoolean() ? "heads" : "tails";
