@@ -1,6 +1,6 @@
 package M5.Part4;
 
-    import java.io.IOException;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -231,4 +231,5 @@ public class Client {
             e.printStackTrace();
         }
     }
+
 }
