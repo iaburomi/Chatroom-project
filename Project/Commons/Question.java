@@ -8,11 +8,9 @@ public class Question {
         this.category = category;
         this.content = content;
     }
-
     public String getCategory() {
         return category;
     }
-
     public String getContent() {
         return content;
     }

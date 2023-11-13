@@ -123,15 +123,12 @@ public class Room implements AutoCloseable {
 						wasCommand = false;
 						break;
 				}
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return wasCommand;
 	}
-
-	// Command helper methods
 	protected static void createRoom(String roomName, ServerThread client) {
 		if (server.createNewRoom(roomName)) {
 
@@ -163,24 +160,17 @@ public class Room implements AutoCloseable {
 	 * @param sender  The client sending the message
 	 * @param message The message to broadcast inside the room
 	 */
-	// In Room.java
 	protected synchronized void sendMessage(ServerThread sender, Payload payload) {
 		if (!isRunning) {
 			return;
 		}
-
 		info("Sending message to " + clients.size() + " clients");
-
 		if (sender != null && processCommands(payload.getMessage(), sender)) {
-			// It was a command, don't broadcast
 			return;
 		}
-
 		String from = (sender == null ? "Room" : sender.getClientName());
-
 		// Set the client IDs in the payload
 		payload.setPlayerIds(clients.stream().map(ServerThread::getClientName).collect(Collectors.toList()));
-
 		Iterator<ServerThread> iter = clients.iterator();
 		while (iter.hasNext()) {
 			ServerThread client = iter.next();
@@ -190,7 +180,6 @@ public class Room implements AutoCloseable {
 			}
 		}
 	}
-
 	protected synchronized void sendConnectionStatus(ServerThread sender, boolean isConnected) {
 		Iterator<ServerThread> iter = clients.iterator();
 		while (iter.hasNext()) {
@@ -201,25 +190,21 @@ public class Room implements AutoCloseable {
 			}
 		}
 	}
-
 	private void handleDisconnect(Iterator<ServerThread> iter, ServerThread client) {
 		iter.remove();
 		info("Removed client " + client.getClientName());
 		checkClients();
 		sendMessage(null, client.getClientName() + " disconnected");
 	}
-
 	public void close() {
 		server.removeRoom(this);
 		server = null;
 		isRunning = false;
 		clients = null;
 	}
-
 	public boolean containsClient(ServerThread serverThread) {
         return clients.contains(serverThread);
     }
-
 	public void sendMessage(ServerThread sender, String message) {
 	}
 }

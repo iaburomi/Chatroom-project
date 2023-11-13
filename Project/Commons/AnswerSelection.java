@@ -10,13 +10,9 @@ public class AnswerSelection {
     }
     public AnswerSelection() {
     }
-
-    // Getter methods
-
     public String getSelectedAnswer() {
         return selectedAnswer;
     }
-
     public int getSelectionOrder() {
         return selectionOrder;
     }

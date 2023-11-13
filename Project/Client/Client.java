@@ -190,14 +190,11 @@ public class Client {
             public void run() {
                 try {
                     Payload fromServer;
-
                     // while we're connected, listen for strings from server
                     while (!server.isClosed() && !server.isInputShutdown()
                             && (fromServer = (Payload) in.readObject()) != null) {
-
                         System.out.println("Debug Info: " + fromServer);
                         processMessage(fromServer);
-
                     }
                     System.out.println("Loop exited");
                 } catch (Exception e) {
@@ -218,7 +215,7 @@ public class Client {
 
     private void processMessage(Payload p) {
         switch (p.getPayloadType()) {
-            case CONNECT:// for now connect,disconnect are all the same
+            case CONNECT:
             case DISCONNECT:
                 System.out.println(String.format("*%s %s*",
                         p.getClientName(),
@@ -231,14 +228,11 @@ public class Client {
                 break;
             default:
                 break;
-
         }
     }
-
     public void start() throws IOException {
         listenForKeyboard();
     }
-
     private void close() {
         try {
             inputThread.interrupt();
@@ -281,9 +275,7 @@ public class Client {
 
     public static void main(String[] args) {
         Client client = new Client();
-
         try {
-            // if start is private, it's valid here since this main is part of the class
             client.start();
         } catch (IOException e) {
             e.printStackTrace();

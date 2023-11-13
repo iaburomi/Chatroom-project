@@ -99,15 +99,12 @@ public class Payload implements Serializable {
 
     // Shows Player IDs
     private List<String> playerIds;
-
     public List<String> getPlayerIds() {
         return playerIds;
     }
-
     public void setPlayerIds(List<String> playerIds) {
         this.playerIds = playerIds;
     }
-
     @Override
     public String toString() {
         return String.format(

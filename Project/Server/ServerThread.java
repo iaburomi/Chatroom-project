@@ -16,11 +16,13 @@ import Project.Commons.PayloadType;
 public class ServerThread extends Thread {
     private Socket client;
     private String clientName;
+    private boolean isReady = false;
     private boolean isRunning = false;
     private ObjectOutputStream out;// exposed here for send()
     // private Server server;// ref to our server so we can call methods on it
     // more easily
     private Room currentRoom;
+    private List<String> availableQuestions;
 
     private void info(String message) {
         System.out.println(String.format("Thread[%s]: %s", getId(), message));
@@ -132,7 +134,7 @@ public class ServerThread extends Thread {
             case CONNECT:
                 setClientName(p.getClientName());
                 break;
-            case DISCONNECT://TBD
+            case DISCONNECT:// TBD
                 break;
             case MESSAGE:
                 if (currentRoom != null) {
@@ -148,99 +150,79 @@ public class ServerThread extends Thread {
                 }
                 break;
             case READY:
-            // Handle READY payload
                 handleReady(p);
                 break;
             case PICK:
-            // Handle PICK payload
                 handlePick(p);
                 break;
             case PASS:
-            // Handle PASS payload
                 handlePass(p);
                 break;
             case SCORE:
-                // Handle SCORE payload
                 handleScore(p);
                 break;
             default:
                 break;
+        }
     }
-}
-private void handleReady() {
+    private void handleReady() {
     }
-
-private void handleAnswerSelection(Payload p) {
-    // Handle the answer selection logic
-    // You can record the selected answer and selection order in the server
-    // Example: server.recordAnswerSelection(p.getSelectedAnswer(), p.getSelectionOrder());
-}
-
-    private boolean isReady = false;
-
+    private void handleAnswerSelection(Payload p) {
+    }
     public boolean isReady() {
         return isReady;
     }
     public ServerThread() {
     }
-
     private void handleReady(Payload p) {
         boolean readyStatus = Boolean.parseBoolean(p.getMessage());
-
-        // Update the ready status for the client
         isReady = readyStatus;
-
         // Broadcast the ready status to the current room
         if (getCurrentRoom() != null) {
             getCurrentRoom().sendMessage(this, p.getMessage());
         }
-
     }
-
     private void handlePick(Payload p) {
         if (getCurrentRoom() != null) {
             // Check if the client is ready before picking a question
             if (isReady()) {
                 // Get a random question from the available questions
                 String randomQuestion = getRandomQuestion();
-    
                 // Broadcast the selected question to all clients in the current room
                 getCurrentRoom().sendMessage(this, "Picked question: " + randomQuestion);
-    
-                // Additional logic if needed
             } else {
                 // Inform the client that they need to be ready to pick a question
                 sendMessage("Server", "You must be ready to pick a question.");
             }
         }
     }
-    private List<String> availableQuestions;
     private String getRandomQuestion() {
         if (availableQuestions != null && !availableQuestions.isEmpty()) {
             Random random = new Random();
             int randomIndex = random.nextInt(availableQuestions.size());
             return availableQuestions.get(randomIndex);
         } else {
-            return "No questions available.";}
+            return "No questions available.";
         }
+    }
 
     private void handlePass(Payload p) {
         // Check if the current room is not null
-    if (getCurrentRoom() != null) {
-        // Check if the client is ready before passing the question
-        if (isReady()) {
-            // Get the current question from the Payload
-            String passedQuestion = p.getMessage();
+        if (getCurrentRoom() != null) {
+            // Check if the client is ready before passing the question
+            if (isReady()) {
+                // Get the current question from the Payload
+                String passedQuestion = p.getMessage();
 
-            // Broadcast the passed question to all clients in the current room
-            getCurrentRoom().sendMessage(this, "Passed question: " + passedQuestion);
+                // Broadcast the passed question to all clients in the current room
+                getCurrentRoom().sendMessage(this, "Passed question: " + passedQuestion);
 
-            // Additional logic if needed
-        } else {
-            // Inform the client that they must be ready to pass a question
-            sendMessage("Server", "You must be ready to pass a question.");
+                // Additional logic if needed
+            } else {
+                // Inform the client that they must be ready to pass a question
+                sendMessage("Server", "You must be ready to pass a question.");
+            }
         }
-    }
     }
 
     private void handleScore(Payload p) {
@@ -249,10 +231,10 @@ private void handleAnswerSelection(Payload p) {
             if (isReady()) {
                 // Increment the client's score (assuming each correct answer earns one point)
                 incrementScore();
-    
+
                 // Broadcast the updated score to all clients in the current room
                 getCurrentRoom().sendMessage(this, "Scored a point! Current score: " + getScore());
-    
+
                 // Additional logic if needed
             } else {
                 // Inform the client that they must be ready to score a point
@@ -260,13 +242,15 @@ private void handleAnswerSelection(Payload p) {
             }
         }
     }
+
     private String getScore() {
         return null;
     }
 
     private void incrementScore() {
         // Increment the score by 1 (modify as needed based on your scoring logic)
-        // This assumes that the 'number' field in Payload is being used to represent the score
+        // This assumes that the 'number' field in Payload is being used to represent
+        // the score
         int currentScore = getNumber();
         setNumber(currentScore + 1);
     }

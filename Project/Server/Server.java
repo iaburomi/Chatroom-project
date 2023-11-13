@@ -47,8 +47,6 @@ public class Server {
         Question randomQuestion = questions.get(randomCategoryIndex);
         return randomQuestion;
     }
-
-
     private void start(int port) {
         this.port = port;
         // server listening
@@ -63,8 +61,6 @@ public class Server {
             rooms.add(lobby);
             startRoundTimer();
             do {
-                // ... (existing code)
-    
                 // Check if round has ended
                 if (roundTimerExpired() || allPlayersPicked()) {
                     handleRoundEnd();
@@ -76,21 +72,16 @@ public class Server {
                 handleAnswerSelections();
                 Question randomQuestion = pickRandomQuestion();
                 broadcast("New round! Category: " + randomQuestion.getCategory() + "\nQuestion: " + randomQuestion.getContent());
-                // Other existing logic or commands can go here
             } while ((incoming_client = serverSocket.accept()) != null);
             do {
                 // Pick a random question for the round
                 Question randomQuestion = pickRandomQuestion();
-                
                 // Get potential answers for the question (you need to implement this)
                 List<String> potentialAnswers = getPotentialAnswers(randomQuestion);
-    
                 // Broadcast category, question, and potential answers
                 broadcast("New round! Category: " + randomQuestion.getCategory() + "\nQuestion: " + randomQuestion.getContent());
                 broadcastPotentialAnswers(potentialAnswers);
-    
                 // Other existing logic or commands can go here
-    
             } while ((incoming_client = serverSocket.accept()) != null);
             do {
                 System.out.println("waiting for next client");
@@ -98,10 +89,8 @@ public class Server {
                     System.out.println("Client connected");
                     ServerThread sClient = new ServerThread(incoming_client, lobby);
                     sClient.start();
-
                     joinRoom("lobby", sClient);
                     incoming_client = null;
-
                 }
             } while ((incoming_client = serverSocket.accept()) != null);
         } catch (IOException e) {
@@ -124,7 +113,6 @@ public class Server {
         }, roundDuration * 1000); // Convert seconds to milliseconds
         roundInProgress = true;
     }
-
     private boolean roundTimerExpired() {
         // Check if the round timer has expired
         return !roundInProgress;
@@ -132,13 +120,11 @@ public class Server {
     private boolean allPlayersPicked() {
         return false; // Placeholder, implement based on your requirements
     }
-
     private void handleRoundEnd() {
         roundInProgress = false;
         // Clear the list of ready players for the next round
         readyPlayers.clear();
     }
-
     private List<String> getPotentialAnswers(Question question) {
         return List.of("Option A", "Option B", "Option C", "Option D");
     }
@@ -216,22 +202,15 @@ public class Server {
         }
     }
     public synchronized void switchRoom(String roomName, ServerThread serverThread) {
-        // Find the current room of the client
         Room currentRoom = findRoomByClient(serverThread);
-
-        // Remove the client from the current room
         if (currentRoom != null) {
             currentRoom.removeClient(serverThread);
         }
-
-        // Find or create the target room
         Room targetRoom = findRoomByName(roomName);
         if (targetRoom == null) {
             targetRoom = new Room(roomName);
             rooms.add(targetRoom);
         }
-
-        // Add the client to the target room
         targetRoom.addClient(serverThread);
     }
     private Room findRoomByClient(ServerThread serverThread) {
