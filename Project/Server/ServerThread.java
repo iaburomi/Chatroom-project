@@ -1,4 +1,4 @@
-package Project;
+package Project.Server;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -6,6 +6,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
 import java.util.Random;
+
+import Project.Commons.Payload;
+import Project.Commons.PayloadType;
 
 /**
  * A server-side representation of a single client

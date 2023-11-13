@@ -1,4 +1,4 @@
-package M5.Part5;
+package Project.Commons;
 
 public class AnswerSelection {
     private String selectedAnswer;

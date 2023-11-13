@@ -1,4 +1,4 @@
-package Project;
+package Project.Server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import Project.Commons.AnswerSelection;
+import Project.Commons.Payload;
+import Project.Commons.PayloadType;
+import Project.Commons.Question;
 
 
 public class Server {
@@ -125,26 +130,16 @@ public class Server {
         return !roundInProgress;
     }
     private boolean allPlayersPicked() {
-        // Check if all players have picked an answer
-        // You may need to track this information in the server
-        // Example: return numberOfPlayersPicked() == totalNumberOfPlayers;
         return false; // Placeholder, implement based on your requirements
     }
 
     private void handleRoundEnd() {
-        // Handle round end logic, calculate scores, etc.
-        // Example: calculateScores();
         roundInProgress = false;
         // Clear the list of ready players for the next round
         readyPlayers.clear();
     }
 
     private List<String> getPotentialAnswers(Question question) {
-        // You need to implement this method based on your game logic
-        // For example, you might fetch potential answers related to the question's category
-        // from a database or use some predefined logic.
-        // Return a list of potential answers.
-        // This is just a placeholder.
         return List.of("Option A", "Option B", "Option C", "Option D");
     }
     private void broadcastPotentialAnswers(List<String> potentialAnswers) {
@@ -163,9 +158,6 @@ public class Server {
      * @return matched Room or null if not found
      */
     private void handleAnswerSelections() {
-        // Handle the recorded answer selections
-        // You can implement the logic to determine correctness and assign points
-        // Example: checkAnswerCorrectness();
     }
     protected synchronized void recordAnswerSelection(String selectedAnswer, int selectionOrder) {
         answerSelections.add(new AnswerSelection(selectedAnswer, selectionOrder));
