@@ -27,7 +27,7 @@ public class NumberGuesser4 {
             fw.write("\n");// new line
             fw.write(output);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+             
             e.printStackTrace();
         }
     }
@@ -107,7 +107,7 @@ public class NumberGuesser4 {
             System.out.println("Tired of playing? No problem, see you next time.");
             processed = true;
         }
-        // TODO add other conditions here
+        
         return processed;
     }
 

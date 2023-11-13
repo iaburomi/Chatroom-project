@@ -90,7 +90,7 @@ public class Server {
 	 */
 	protected synchronized boolean createNewRoom(String roomName) {
 		if (getRoom(roomName) != null) {
-			// TODO can't create room
+			
 			System.out.println(String.format("Room %s already exists", roomName));
 			return false;
 		} else {
@@ -122,7 +122,7 @@ public class Server {
 
     private boolean processCommand(String message){
         System.out.println("Checking command: " + message);
-        //TODO
+    
         return false;
     }
     public static void main(String[] args) {

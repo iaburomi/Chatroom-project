@@ -3,8 +3,9 @@ package M5.Part5;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Room implements AutoCloseable{
+public class Room implements AutoCloseable {
 	protected static Server server;// used to refer to accessible server functions
 	private String name;
 	private List<ServerThread> clients = new ArrayList<ServerThread>();
@@ -21,6 +22,8 @@ public class Room implements AutoCloseable{
 		this.name = name;
 		isRunning = true;
 	}
+	public Room() {
+    }
 
 	private void info(String message) {
 		System.out.println(String.format("Room[%s]: %s", name, message));
@@ -50,7 +53,7 @@ public class Room implements AutoCloseable{
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					//sendMessage(client, "joined the room " + getName());
+					// sendMessage(client, "joined the room " + getName());
 					sendConnectionStatus(client, true);
 				}
 			}.start();
@@ -66,7 +69,7 @@ public class Room implements AutoCloseable{
 		// we don't need to broadcast it to the server
 		// only to our own Room
 		if (clients.size() > 0) {
-			//sendMessage(client, "left the room");
+			// sendMessage(client, "left the room");
 			sendConnectionStatus(client, false);
 		}
 		checkClients();
@@ -129,7 +132,8 @@ public class Room implements AutoCloseable{
 	// Command helper methods
 	protected static void createRoom(String roomName, ServerThread client) {
 		if (server.createNewRoom(roomName)) {
-			//server.joinRoom(roomName, client);
+
+			// server.joinRoom(roomName, client);
 			Room.joinRoom(roomName, client);
 		} else {
 			client.sendMessage("Server", String.format("Room %s already exists", roomName));
@@ -157,27 +161,35 @@ public class Room implements AutoCloseable{
 	 * @param sender  The client sending the message
 	 * @param message The message to broadcast inside the room
 	 */
-	protected synchronized void sendMessage(ServerThread sender, String message) {
+	// In Room.java
+	protected synchronized void sendMessage(ServerThread sender, Payload payload) {
 		if (!isRunning) {
 			return;
 		}
+
 		info("Sending message to " + clients.size() + " clients");
-		if (sender != null && processCommands(message, sender)) {
-			// it was a command, don't broadcast
+
+		if (sender != null && processCommands(payload.getMessage(), sender)) {
+			// It was a command, don't broadcast
 			return;
 		}
-		
+
 		String from = (sender == null ? "Room" : sender.getClientName());
+
+		// Set the client IDs in the payload
+		payload.setPlayerIds(clients.stream().map(ServerThread::getClientName).collect(Collectors.toList()));
+
 		Iterator<ServerThread> iter = clients.iterator();
 		while (iter.hasNext()) {
 			ServerThread client = iter.next();
-			boolean messageSent = client.sendMessage(from, message);
+			boolean messageSent = client.send(from, payload);
 			if (!messageSent) {
 				handleDisconnect(iter, client);
 			}
 		}
 	}
-	protected synchronized void sendConnectionStatus(ServerThread sender, boolean isConnected){
+
+	protected synchronized void sendConnectionStatus(ServerThread sender, boolean isConnected) {
 		Iterator<ServerThread> iter = clients.iterator();
 		while (iter.hasNext()) {
 			ServerThread client = iter.next();
@@ -187,16 +199,25 @@ public class Room implements AutoCloseable{
 			}
 		}
 	}
-	private void handleDisconnect(Iterator<ServerThread> iter, ServerThread client){
+
+	private void handleDisconnect(Iterator<ServerThread> iter, ServerThread client) {
 		iter.remove();
 		info("Removed client " + client.getClientName());
 		checkClients();
 		sendMessage(null, client.getClientName() + " disconnected");
 	}
+
 	public void close() {
 		server.removeRoom(this);
 		server = null;
 		isRunning = false;
 		clients = null;
+	}
+
+	public boolean containsClient(ServerThread serverThread) {
+        return clients.contains(serverThread);
+    }
+
+	public void sendMessage(ServerThread sender, String message) {
 	}
 }

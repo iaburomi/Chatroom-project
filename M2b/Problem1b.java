@@ -17,7 +17,7 @@ public class Problem1b {
         System.out.println("Processing Array:" + Arrays.toString(arr));
         System.out.println("Odds output:");
         //hint: use the arr variable; don't diretly use the a1-a4 variables
-        //TODO add/edit code here
+
         //iaa47
         //9/25/23
         // In this problem I am taking the numbers in the arrays and creating an if statement

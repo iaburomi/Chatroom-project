@@ -1,5 +1,6 @@
-package M5.Part5;
+package Project;
 
 public enum PayloadType {
     CONNECT, DISCONNECT, MESSAGE, READY, PICK, PASS, SCORE
+    
 }

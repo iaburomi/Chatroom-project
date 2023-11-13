@@ -1,4 +1,4 @@
-package M5.Part5;
+package Project;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 public class Server {
     int port = 3001;
@@ -31,11 +32,6 @@ public class Server {
     public Server() {
     }
 
-    private boolean allPlayersReady() {
-        // Check if all players are ready for the next round
-        // Example: return readyPlayers.size() == totalNumberOfPlayers;
-        return false; // Placeholder, implement based on your requirements
-    }
     private void initializeQuestions() {
         questions.add(new Question("General Knowledge", "What is the capital of France?"));
         questions.add(new Question("Science", "What is the chemical symbol for gold?"));

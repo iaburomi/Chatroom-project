@@ -41,7 +41,7 @@ public class FileSystemSample {
 			fw.write(msg);
 			System.out.println("Wrote " + msg + " to " + fileName);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -62,7 +62,7 @@ public class FileSystemSample {
 			System.out.println("Contents of " + fileName + ": ");
 			System.out.println(fullText);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 	}
@@ -73,13 +73,13 @@ public class FileSystemSample {
 			fw.write(System.lineSeparator());
 			fw.write(msg);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		String fileName = "test.txt";
 		FileSystemSample fss = new FileSystemSample();
 		fss.createFileAndGetDetails(fileName);
