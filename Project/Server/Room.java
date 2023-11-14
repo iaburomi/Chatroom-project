@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import Project.Commons.Payload;
+import Project.Commons.PayloadType;
 
 public class Room implements AutoCloseable {
 	protected static Server server;// used to refer to accessible server functions
@@ -61,6 +62,33 @@ public class Room implements AutoCloseable {
 			}.start();
 
 		}
+	}
+	//iaa47
+	//11/13/23
+	protected synchronized boolean handlePlayerAnswer(ServerThread sender, Payload payload) {
+		if (!isRunning) {
+			return false;
+		}
+		// Forward the player's answer to all clients in the room
+		Iterator<ServerThread> iter = clients.iterator();
+		while (iter.hasNext()) {
+			ServerThread client = iter.next();
+			boolean messageSent = client.send(sender.getClientName(), payload);
+			if (!messageSent) {
+				handleDisconnect(iter, client);
+			}
+		}
+		return true;
+	}
+	//iaa47
+	//11/13/23
+	protected synchronized boolean handleEndRound() {
+		if (!isRunning) {
+			return false;
+		} Payload endRoundPayload = new Payload();
+		endRoundPayload.setPayloadType(PayloadType.END_ROUND);
+		sendMessage(null, endRoundPayload);
+		return true;
 	}
 
 	protected synchronized void removeClient(ServerThread client) {
@@ -139,7 +167,7 @@ public class Room implements AutoCloseable {
 		}
 	}
 
-	protected static void joinRoom(String roomName, ServerThread client) {
+	public static void joinRoom(String roomName, ServerThread client) {
 		if (!server.joinRoom(roomName, client)) {
 			client.sendMessage("Server", String.format("Room %s doesn't exist", roomName));
 		}
@@ -149,6 +177,34 @@ public class Room implements AutoCloseable {
 		client.setCurrentRoom(null);
 		client.disconnect();
 		room.removeClient(client);
+	}
+	//iaa47
+	//11/13/23
+	protected synchronized void broadcastTriviaInfo(ServerThread sender, Payload payload) {
+		Iterator<ServerThread> iter = clients.iterator();
+		while (iter.hasNext()) {
+			ServerThread client = iter.next();
+			boolean messageSent = client.sendTriviaInfo(sender.getClientName(), payload);
+			if (!messageSent) {
+				handleDisconnect(iter, client);
+			}
+		}
+	}
+	protected synchronized boolean sendTriviaInfo(ServerThread sender, Payload payload) {
+		if (!isRunning) {
+			return false;
+		}
+		String triviaInfo = payload.getTriviaInfoAsString();
+		info("Sending trivia information to " + clients.size() + " clients");
+		Iterator<ServerThread> iter = clients.iterator();
+		while (iter.hasNext()) {
+			ServerThread client = iter.next();
+			boolean messageSent = client.send(sender.getClientName(), triviaInfo);
+			if (!messageSent) {
+				handleDisconnect(iter, client);
+			}
+		}
+		return true;
 	}
 	// end command helper methods
 
@@ -207,4 +263,9 @@ public class Room implements AutoCloseable {
     }
 	public void sendMessage(ServerThread sender, String message) {
 	}
+	public boolean isRunning() {
+		return false;
+	}
+    public static void getRooms(String trim, ServerThread serverThread) {
+    }
 }
