@@ -1,67 +1,50 @@
-<table><tr><td> <em>Assignment: </em> IT114 Trivia Milestone 2</td></tr>
+<table><tr><td> <em>Assignment: </em> IT114 Chatroom Milestone 2</td></tr>
 <tr><td> <em>Student: </em> Issa Aburomi (iaa47)</td></tr>
-<tr><td> <em>Generated: </em> 11/13/2023 11:00:57 PM</td></tr>
-<tr><td> <em>Grading Link: </em> <a rel="noreferrer noopener" href="https://learn.ethereallab.app/homework/IT114-003-F23/it114-trivia-milestone-2/grade/iaa47" target="_blank">Grading</a></td></tr></table>
-<table><tr><td> <em>Instructions: </em> <p>Implement the features from Milestone2 from the proposal document:&nbsp;<a href="https://docs.google.com/document/d/1h2aEWUoZ-etpz1CRl-StaWbZTjkd9BDMq0b6TXK4utI/view">https://docs.google.com/document/d/1h2aEWUoZ-etpz1CRl-StaWbZTjkd9BDMq0b6TXK4utI/view</a></p>
+<tr><td> <em>Generated: </em> 11/17/2023 2:59:05 PM</td></tr>
+<tr><td> <em>Grading Link: </em> <a rel="noreferrer noopener" href="https://learn.ethereallab.app/homework/IT114-003-F23/it114-chatroom-milestone-2/grade/iaa47" target="_blank">Grading</a></td></tr></table>
+<table><tr><td> <em>Instructions: </em> <p>Implement the features from Milestone2 from the proposal document:&nbsp; <a href="https://docs.google.com/document/d/1ONmvEvel97GTFPGfVwwQC96xSsobbSbk56145XizQG4/view">https://docs.google.com/document/d/1ONmvEvel97GTFPGfVwwQC96xSsobbSbk56145XizQG4/view</a></p>
 </td></tr></table>
 <table><tr><td> <em>Deliverable 1: </em> Payload </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Payload Screenshots</td></tr>
-<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-14T03.06.45Screenshot%202023-11-13%20220459.png.webp?alt=media&token=8623090a-f93b-41ec-9b0e-ead049cdc594"/></td></tr>
-<tr><td> <em>Caption:</em> <p>Payload<br></p>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-17T19.37.43Screenshot%202023-11-16%20234218.png.webp?alt=media&token=3f1f1f1e-d981-4e34-bd89-c6a1ffec29ec"/></td></tr>
+<tr><td> <em>Caption:</em> <p>The payload gets the message /flip which triggers the flip function outputting, flipped<br>a coin and got tails.  Then using /roll 2d it rolls a<br>random number between 1 and 2.<br></p>
 </td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-14T03.06.48Screenshot%202023-11-13%20220554.png.webp?alt=media&token=897b68c3-7fd3-4543-a6b9-f0a935260193"/></td></tr>
-<tr><td> <em>Caption:</em> <p>Payload<br></p>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-17T19.42.17Screenshot%202023-11-17%20144142.png.webp?alt=media&token=386233e4-48b7-48d0-b10a-beb01a486d3e"/></td></tr>
+<tr><td> <em>Caption:</em> <p>Roll function pt. 1<br></p>
 </td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-14T03.06.51Screenshot%202023-11-13%20220617.png.webp?alt=media&token=c05edd66-48eb-4db9-ad9a-dec5f5f56adb"/></td></tr>
-<tr><td> <em>Caption:</em> <p>Payload<br></p>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-17T19.42.20Screenshot%202023-11-17%20144157.png.webp?alt=media&token=7d43a557-394c-44b6-9600-060b3736c5d8"/></td></tr>
+<tr><td> <em>Caption:</em> <p>Roll function pt. 2<br></p>
 </td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-14T03.09.00Screenshot%202023-11-13%20220851.png.webp?alt=media&token=5b56badd-2598-4e7c-9e8b-c256a7deb4fe"/></td></tr>
-<tr><td> <em>Caption:</em> <p>Payload<br></p>
-</td></tr>
-</table></td></tr>
-</table></td></tr>
-<table><tr><td> <em>Deliverable 2: </em> Game Play Code </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
-<tr><td><table><tr><td> <em>Sub-Task 1: </em> Show the code related to the question/category choice</td></tr>
-<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-14T03.19.32Screenshot%202023-11-13%20221911.png.webp?alt=media&token=308200dd-0eba-4bae-8f49-03015aea72c3"/></td></tr>
-<tr><td> <em>Caption:</em> <p>Questions and Categories<br></p>
-</td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-14T03.19.26Screenshot%202023-11-13%20221816.png.webp?alt=media&token=0f78d335-cc39-4f38-bc0f-c281787b9998"/></td></tr>
-<tr><td> <em>Caption:</em> <p>Questions and Categories<br></p>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-17T19.42.46Screenshot%202023-11-17%20144205.png.webp?alt=media&token=dda03595-224d-4f4b-bdf3-36f7a252fa54"/></td></tr>
+<tr><td> <em>Caption:</em> <p>Flip function<br></p>
 </td></tr>
 </table></td></tr>
-<tr><td> <em>Sub-Task 2: </em> Show the code related to players picking answers</td></tr>
-<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-14T03.22.55Screenshot%202023-11-13%20222247.png.webp?alt=media&token=654cc317-e7c6-45e3-9d3b-0476445fd39f"/></td></tr>
-<tr><td> <em>Caption:</em> <p>Answer Pick<br></p>
-</td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-14T03.23.11Screenshot%202023-11-13%20222110.png.webp?alt=media&token=8d1cb2b0-da26-41f3-8ea1-036dc1f57691"/></td></tr>
-<tr><td> <em>Caption:</em> <p>Answer Pick<br></p>
-</td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-14T03.35.57Screenshot%202023-11-13%20223549.png.webp?alt=media&token=3b2c20dc-cbc9-4250-9130-8b5e0528195d"/></td></tr>
-<tr><td> <em>Caption:</em> <p>Answer Pick<br></p>
+</table></td></tr>
+<table><tr><td> <em>Deliverable 2: </em> Server-side commands </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
+<tr><td><table><tr><td> <em>Sub-Task 1: </em> Show the code for the mentioned commands</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-17T04.42.22Screenshot%202023-11-16%20234218.png.webp?alt=media&token=865c34b8-efe6-4507-bb7f-7128dba4ee80"/></td></tr>
+<tr><td> <em>Caption:</em> <p>Terminal with working flip and roll function<br></p>
 </td></tr>
 </table></td></tr>
-<tr><td> <em>Sub-Task 3: </em> Show the code related to the timer functionality</td></tr>
-<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-14T03.36.14Screenshot%202023-11-13%20223129.png.webp?alt=media&token=6e2983de-c062-4234-9589-62da0c568b7d"/></td></tr>
-<tr><td> <em>Caption:</em> <p>Timer function<br></p>
-</td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-14T03.36.11Screenshot%202023-11-13%20223441.png.webp?alt=media&token=e87aa492-83a4-4a94-912f-9bc1aeda267b"/></td></tr>
-<tr><td> <em>Caption:</em> <p>Timer Function<br></p>
-</td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-14T03.36.06Screenshot%202023-11-13%20223549.png.webp?alt=media&token=37865966-325e-40df-808f-96934034386c"/></td></tr>
-<tr><td> <em>Caption:</em> <p>Timer Function<br></p>
+<tr><td> <em>Sub-Task 2: </em> Explain the logic/implementation of each commands</td></tr>
+<tr><td> <em>Response:</em> <p>The flip command works by first calling the random function the flip function.&nbsp;<br>We then set an if statement where there are two statements. One message<br>gets chosen if the coin lands on heads and the other if it<br>lands on tails. The random number generator will pick at random either heads<br>or tails and then run the if statement.&nbsp; And for the roll command,<br>works by creating a dice of any number and picking a random number<br>throughout that number list.&nbsp; For example, if use the command roll 6d, it<br>will roll a random number between 1 and 6.<br></p><br></td></tr>
+</table></td></tr>
+<table><tr><td> <em>Deliverable 3: </em> Text Display </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707834-bf5a5b13-ec36-4597-9741-aa830c195be2.png"></td></tr>
+<tr><td><table><tr><td> <em>Sub-Task 1: </em> Show the code for the various style handling via markdown or special characters</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-17T19.44.44Screenshot%202023-11-17%20144437.png.webp?alt=media&token=2cd0e089-ff0d-48f1-8683-080e679bf4f5"/></td></tr>
+<tr><td> <em>Caption:</em> <p>Code for Bold, Italicize, color, and underline and how the function works.<br></p>
 </td></tr>
 </table></td></tr>
-<tr><td> <em>Sub-Task 4: </em> Explain the Game flow code at a high level</td></tr>
-<tr><td> <em>Response:</em> <p>At the start of the game, the player chooses his name.&nbsp; He then<br>connects to the server where he then can create or join a game<br>lobby.&nbsp; In this lobby with 2 or more people the game will start<br>and they will choose what category and question they would like to answer.&nbsp;<br>From that point of selecting a question a timer will start and whoever<br>answers the question the fastest will get the most of the full point.&nbsp;<br>Continuing until there is a winner.&nbsp; I used payload.java to store all the<br>getters and setters of the user&#39;s inputs.&nbsp; I use the serverthread to allow<br>the commands of the user to perform a function.&nbsp; I used Server and<br>Room to hold methods to create time settings, questions, categories, and more.<br></p><br></td></tr>
+<tr><td> <em>Sub-Task 2: </em> Show source message and the result output in the terminal (note, you won't actually see the styles until Milestone3)</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-11-17T19.53.45Screenshot%202023-11-17%20145336.png.webp?alt=media&token=9a9528b0-95c3-4194-b15b-742436652ba9"/></td></tr>
+<tr><td> <em>Caption:</em> <p>Terminal showing the output of the bold, italicized, underlined, and colored messages<br></p>
+</td></tr>
 </table></td></tr>
-<table><tr><td> <em>Deliverable 3: </em> Game Evidence </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707795-a9c94a71-7871-4572-bfae-ad636f8f8474.png"></td></tr>
-<tr><td><table><tr><td> <em>Sub-Task 1: </em> Show screenshots of the terminal output of a working game flow</td></tr>
-<tr><td><table><tr><td>Missing Image</td></tr>
-<tr><td> <em>Caption:</em> (missing)</td></tr>
+<tr><td> <em>Sub-Task 3: </em> Explain how you got each style applied</td></tr>
+<tr><td> <em>Response:</em> <p>(missing)</p><br></td></tr>
 </table></td></tr>
-</table></td></tr>
-<table><tr><td> <em>Deliverable 4: </em> Misc </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707795-a9c94a71-7871-4572-bfae-ad636f8f8474.png"></td></tr>
+<table><tr><td> <em>Deliverable 4: </em> Misc </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Include the pull request for Milestone2 to main</td></tr>
-<tr><td>Not provided</td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iaburomi/Iaa47-IT114-003/pull/6">https://github.com/iaburomi/Iaa47-IT114-003/pull/6</a> </td></tr>
 </table></td></tr>
-<table><tr><td><em>Grading Link: </em><a rel="noreferrer noopener" href="https://learn.ethereallab.app/homework/IT114-003-F23/it114-trivia-milestone-2/grade/iaa47" target="_blank">Grading</a></td></tr></table>
+<table><tr><td><em>Grading Link: </em><a rel="noreferrer noopener" href="https://learn.ethereallab.app/homework/IT114-003-F23/it114-chatroom-milestone-2/grade/iaa47" target="_blank">Grading</a></td></tr></table>
