@@ -214,12 +214,11 @@ public enum Server {
         }
     }
 
-    private boolean processCommand(String message) {
+     private boolean processCommand(String message) {
         System.out.println("Checking command: " + message);
         // TODO
         return false;
     }
-
     public static void main(String[] args) {
         Server.logger.info("Starting server");
         int port = Server.INSTANCE.port;

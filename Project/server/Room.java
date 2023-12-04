@@ -3,7 +3,10 @@ package Project.server;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import Project.common.Constants;
 
@@ -20,6 +23,8 @@ public class Room implements AutoCloseable {
     private final static String DISCONNECT = "disconnect";
     private final static String LOGOUT = "logout";
     private final static String LOGOFF = "logoff";
+    private final static String FLIP = "flip";
+    private final static String Roll = "roll";
     private static Logger logger = Logger.getLogger(Room.class.getName());
     public static Server server;
 
@@ -115,6 +120,7 @@ public class Room implements AutoCloseable {
                 String command = comm2[0];
                 String roomName;
                 wasCommand = true;
+                
                 switch (command) {
                     case CREATE_ROOM:
                         roomName = comm2[1];
@@ -129,11 +135,58 @@ public class Room implements AutoCloseable {
                     case LOGOFF:
                         Room.disconnectClient(client, this);
                         break;
+                    // iaa47
+                    // Flip code. Use random gen to generate two ints. IF int is 0, user rolled
+                    // heads, else they roll tails
+                    case FLIP:
+                        Random gen = new Random();
+                        int coin_Flip = gen.nextInt(2);
+                        if (coin_Flip == 0) {
+                            sendMessage(client, "*Flipped a coin and got heads*");
+                        } else {
+                            sendMessage(client, "*Flipped a coin and got tails*");
+                        }
+                        break;
+                        //roll code to generate random number on a die
+                    case Roll:
+                        try {
+                            String Dice = comm2[1];
+                            String RollType1 = "(\\d+)d(\\d+)";
+                            String RollType2 = "(\\d+)";
+                            Pattern roll1 = Pattern.compile(RollType1);
+                            Pattern roll2 = Pattern.compile(RollType2);
+                            Matcher type1 = roll1.matcher(Dice);
+                            Matcher type2 = roll2.matcher(Dice);
+                            if (type1.find()) {
+                                String DN = type1.group(1);
+                                String DS = type2.group(2);
+                                int NumberOfDice = Integer.parseInt(DN);
+                                int NumberOfSides = Integer.parseInt(DS);
+                                int total = 0;//for statement that rolls a random number 
+                                for (int x = 0; x < NumberOfDice; x++) {
+                                    int roll = (int) (Math.random() * NumberOfSides) + 1;
+                                    total += roll;
+                                }//output message with the result number and message
+                                sendMessage(null, String.format("*%s rolled* " + Dice + "*, the result is* " + total,
+                                        client.getClientName()));
+                            } else if (type2.find()) {//the second result for a number in a a bigger range
+                                String range = type2.group(1);
+                                int num = Integer.parseInt(range);
+                                int total = (int) (Math.random() * num) + 1;
+                                sendMessage(null, String.format("*%s rolled* " + Dice + "* the result is* " + total,
+                                        client.getClientName()));
+                            }//another result if the user inputs the roll method incorrectly
+                        } catch (Exception e) {
+                            sendMessage(null, "Make sure to type the right format of /roll #d# or /roll 0-x or 1-x");
+                        }
+
+                        break;
                     default:
                         wasCommand = false;
                         break;
                 }
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -154,7 +207,14 @@ public class Room implements AutoCloseable {
             client.sendMessage(Constants.DEFAULT_CLIENT_ID, String.format("Room %s already exists", roomName));
         }
     }
-
+    protected synchronized ServerThread getClientByName(String username) {
+        for (ServerThread client : clients) {
+            if (client.getClientName().equalsIgnoreCase(username)) {
+                return client;
+            }
+        }
+        return null;
+    }
     /**
      * Will cause the client to leave the current room and be moved to the new room
      * if applicable
@@ -172,6 +232,28 @@ public class Room implements AutoCloseable {
         client.disconnect();
         room.removeClient(client);
     }
+    protected synchronized void sendMessageToPrivateParticipants(ServerThread sender, ServerThread receiver, String message) {
+        if (!isRunning) {
+            return;
+        }
+    
+        logger.info(String.format("Sending private message from %s to %s", sender.getClientName(), receiver.getClientName()));
+    
+        // Process special formatting commands
+        message = processFormattingCommands(message);
+    
+        // Notify sender and receiver
+        boolean senderMessageSent = sender.sendMessage(receiver.getClientId(), message);
+        boolean receiverMessageSent = receiver.sendMessage(sender.getClientId(), message);
+    
+        // Handle disconnects
+        if (!senderMessageSent) {
+            handleDisconnect(clients.iterator(), sender);
+        }
+        if (!receiverMessageSent) {
+            handleDisconnect(clients.iterator(), receiver);
+        }
+    }
     // end command helper methods
 
     /***
@@ -182,13 +264,16 @@ public class Room implements AutoCloseable {
      * @param sender  The client sending the message
      * @param message The message to broadcast inside the room
      */
+    //iaa47
     protected synchronized void sendMessage(ServerThread sender, String message) {
         if (!isRunning) {
             return;
         }
         logger.info(String.format("Sending message to %s clients", clients.size()));
+        // Process special formatting commands
+        message = processFormattingCommands(message);
         if (sender != null && processCommands(message, sender)) {
-            // it was a command, don't broadcast
+            // It was a command, don't broadcast
             return;
         }
         long from = sender == null ? Constants.DEFAULT_CLIENT_ID : sender.getClientId();
@@ -200,6 +285,16 @@ public class Room implements AutoCloseable {
                 handleDisconnect(iter, client);
             }
         }
+    }
+
+    private String processFormattingCommands(String message) {
+        // Handle formatting commands here and convert them to HTML or other formatting
+        // codes
+        message = message.replaceAll("\\*(.*?)\\*", "<b>$1</b>"); // Bold
+        message = message.replaceAll("_\\{(.*?)}_", "<u>$1</u>"); // Underline
+        message = message.replaceAll("&\\{(.*?)}&", "<i>$1</i>"); // Italicize
+        message = message.replaceAll("-c@\\{(.*?)}@(.*?)\\-c@", "<font color='$1'>$2</font>"); // Change color
+        return message;
     }
 
     protected synchronized void sendConnectionStatus(ServerThread sender, boolean isConnected) {
@@ -227,5 +322,8 @@ public class Room implements AutoCloseable {
         Server.INSTANCE.removeRoom(this);
         isRunning = false;
         clients.clear();
+    }
+
+    public void broadcast(String string) {
     }
 }

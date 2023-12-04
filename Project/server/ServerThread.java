@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,6 +36,7 @@ public class ServerThread extends Thread {
     private Room currentRoom;
     private static Logger logger = Logger.getLogger(ServerThread.class.getName());
     private long myClientId;
+    private Map<String, Set<ServerThread>> mutedClients = new HashMap<>();
 
     public void setClientId(long id) {
         myClientId = id;
@@ -85,23 +90,25 @@ public class ServerThread extends Thread {
     }
 
     // send methods
-    public boolean sendGridReset(){
+    public boolean sendGridReset() {
         Payload p = new Payload();
         p.setPayloadType(PayloadType.GRID_RESET);
         return send(p);
     }
-    public boolean sendCells(List<CellData> cells){
+
+    public boolean sendCells(List<CellData> cells) {
         CellPayload cp = new CellPayload();
         cp.setCellData(cells);
         return send(cp);
     }
 
-    public boolean sendGridDimensions(int x, int y){
+    public boolean sendGridDimensions(int x, int y) {
         PositionPayload pp = new PositionPayload();
         pp.setCoord(x, y);
-        pp.setPayloadType(PayloadType.GRID); //override default payload type
+        pp.setPayloadType(PayloadType.GRID); // override default payload type
         return send(pp);
     }
+
     public boolean sendCurrentTurn(long clientId) {
         Payload p = new Payload();
         p.setPayloadType(PayloadType.TURN);
@@ -168,6 +175,7 @@ public class ServerThread extends Thread {
     }
 
     public boolean sendMessage(long clientId, String message) {
+
         Payload p = new Payload();
         p.setPayloadType(PayloadType.MESSAGE);
         p.setClientId(clientId);
@@ -241,9 +249,34 @@ public class ServerThread extends Thread {
             case DISCONNECT:
                 Room.disconnectClient(this, getCurrentRoom());
                 break;
+            // iaa47
+            // 11/26/23
             case MESSAGE:
                 if (currentRoom != null) {
-                    currentRoom.sendMessage(this, p.getMessage());
+                    String message = p.getMessage().trim();
+                    if (message.startsWith("@")) {
+                        // Private message format: "@username message"
+                        String[] parts = message.split(" ", 2);
+                        if (parts.length == 2) {
+                            String receiverUsername = parts[0].substring(1); // Exclude the '@'
+                            String privateMessage = parts[1];
+                            // Check if the receiver is valid (exists in the room)
+                            ServerThread receiverThread = currentRoom.getClientByName(receiverUsername);
+                            if (receiverThread != null) {
+                                // Send the private message to the sender and the receiver
+                                currentRoom.sendMessageToPrivateParticipants(this, receiverThread, privateMessage);
+                            } else {
+                                // Handle invalid receiver username
+                                sendMessage(Constants.DEFAULT_CLIENT_ID, "Invalid username: " + receiverUsername);
+                            }
+                        } else {
+                            // Handle incorrect private message format
+                            sendMessage(Constants.DEFAULT_CLIENT_ID, "Invalid private message format");
+                        }
+                    } else {
+                        // Broadcast normal messages to the room
+                        currentRoom.sendMessage(this, p.getMessage());
+                    }
                 } else {
                     // TODO migrate to lobby
                     logger.log(Level.INFO, "Migrating to lobby on message with null room");
@@ -293,13 +326,72 @@ public class ServerThread extends Thread {
                     e.printStackTrace();
                 }
                 break;
+                case MUTE:
+                case UNMUTE:
+                    System.out.println("Received MUTE/UNMUTE request");
+                    handleMuteUnmuteRequest(p);
+                    break;
             default:
                 break;
-
         }
-
     }
 
+    private void handleMuteUnmuteRequest(Payload p) {
+        if (currentRoom != null) {
+            String targetUsername = p.getMessage().trim();
+            ServerThread targetThread = currentRoom.getClientByName(targetUsername);
+    
+            if (targetThread != null) {
+                switch (p.getPayloadType()) {
+                    case MUTE:
+                        muteClient(this, targetThread); // Mute the user
+                        break;
+                    case UNMUTE:
+                        unmuteClient(this, targetThread); // Unmute the user
+                        break;
+                    default:
+                        // Handle other payload types if necessary
+                        break;
+                }
+            } else {
+                // Handle invalid target username
+                sendMessage(Constants.DEFAULT_CLIENT_ID, "Invalid username: " + targetUsername);
+            }
+        } else {
+            // TODO: Migrate to lobby
+            logger.log(Level.INFO, "Migrating to lobby on mute/unmute with null room");
+            Room.joinRoom(Constants.LOBBY, this);
+        }
+    }
+    
+    // Method to mute a client
+    public void muteClient(ServerThread muter, ServerThread target) {
+        synchronized (mutedClients) {
+            if (!mutedClients.containsKey(target.getClientName())) {
+                // Mute the client
+                mutedClients.computeIfAbsent(target.getClientName(), k -> new HashSet<>()).add(muter);
+                muter.sendMessage(Constants.DEFAULT_CLIENT_ID, "User @" + target.getClientName() + " has been muted.");
+            } else {
+                // Client is already muted
+                muter.sendMessage(Constants.DEFAULT_CLIENT_ID, "User @" + target.getClientName() + " is already muted.");
+            }
+        }
+    }
+    
+    // Method to unmute a client
+    public void unmuteClient(ServerThread unmuter, ServerThread target) {
+        synchronized (mutedClients) {
+            if (mutedClients.containsKey(target.getClientName())) {
+                // Unmute the client
+                mutedClients.get(target.getClientName()).remove(unmuter);
+                unmuter.sendMessage(Constants.DEFAULT_CLIENT_ID,
+                        "User @" + target.getClientName() + " has been unmuted.");
+            } else {
+                // Client is not muted
+                unmuter.sendMessage(Constants.DEFAULT_CLIENT_ID, "User @" + target.getClientName() + " is not muted.");
+            }
+        }
+    }
     private void cleanup() {
         logger.info("Thread cleanup() start");
         try {

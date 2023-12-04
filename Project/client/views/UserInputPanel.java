@@ -38,13 +38,16 @@ public class UserInputPanel extends JPanel {
         });
         JButton nButton = new JButton("Connect");
         nButton.addActionListener((event) -> {
-
             boolean isValid = true;
 
             try {
-                username = userValue.getText();
-                if (username.trim().length() == 0) {
+                username = userValue.getText().trim(); // Trim to remove leading and trailing spaces
+                if (username.isEmpty()) {
                     userError.setText("Username must be provided");
+                    userError.setVisible(true);
+                    isValid = false;
+                } else if (username.contains(" ")) {
+                    userError.setText("Username cannot contain spaces");
                     userError.setVisible(true);
                     isValid = false;
                 }
@@ -53,13 +56,14 @@ public class UserInputPanel extends JPanel {
                 userError.setVisible(true);
                 isValid = false;
             }
+
             if (isValid) {
-                // System.out.println("Chosen username: " + username);
                 logger.log(Level.INFO, "Chosen username: " + username);
                 userError.setVisible(false);
                 controls.connect();
             }
         });
+
         // button holder
         JPanel buttons = new JPanel();
         buttons.add(pButton);

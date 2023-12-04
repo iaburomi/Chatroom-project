@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Hashtable;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 import Project.common.CharacterPayload;
@@ -50,8 +51,42 @@ public enum Client {
         // don't really help determine
         // if the server had a problem
         return server.isConnected() && !server.isClosed() && !server.isInputShutdown() && !server.isOutputShutdown();
-
     }
+    private Client client;
+    public void handleUserCommand(String command) {
+        if (command.startsWith("/mute")) {
+            String targetUsername = command.substring("/mute".length()).trim();
+            try {
+                client.sendMute(targetUsername);
+            } catch (IOException e) {
+                e.printStackTrace();  // Handle the exception appropriately
+            }
+        } else if (command.startsWith("/unmute")) {
+            String targetUsername = command.substring("/unmute".length()).trim();
+            try {
+                client.sendUnmute(targetUsername);
+            } catch (IOException e) {
+                e.printStackTrace();  // Handle the exception appropriately
+            }
+        } else {
+            // Handle other commands or regular messages
+            // ...
+        }
+    }
+    public void sendMute(String targetUsername) throws IOException {
+        Payload p = new Payload();
+        p.setPayloadType(PayloadType.MUTE);
+        p.setMessage(targetUsername);
+        out.writeObject(p);
+    }
+
+    public void sendUnmute(String targetUsername) throws IOException {
+        Payload p = new Payload();
+        p.setPayloadType(PayloadType.UNMUTE);
+        p.setMessage(targetUsername);
+        out.writeObject(p);
+    }
+     
 
     /**
      * Takes an ip address and a port to attempt a socket connection to a server.

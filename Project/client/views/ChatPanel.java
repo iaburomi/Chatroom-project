@@ -153,14 +153,13 @@ public class ChatPanel extends JPanel {
     public void clearUserList() {
         userListPanel.clearUserList();
     }
-
+    //iaa47
     public void addText(String text) {
         JPanel content = chatArea;
+        // Process formatting commands
+        text = processFormattingCommands(text);
         // add message
-        JEditorPane textContainer = new JEditorPane("text/plain", text);
-
-        // sizes the panel to attempt to take up the width of the container
-        // and expand in height based on word wrapping
+        JEditorPane textContainer = new JEditorPane("text/html", "<html>" + text + "</html>");
         textContainer.setLayout(null);
         textContainer.setPreferredSize(
                 new Dimension(content.getWidth(), ClientUtils.calcHeightForText(this, text, content.getWidth())));
@@ -173,4 +172,13 @@ public class ChatPanel extends JPanel {
         JScrollBar vertical = ((JScrollPane) chatArea.getParent().getParent()).getVerticalScrollBar();
         vertical.setValue(vertical.getMaximum());
     }
+    private String processFormattingCommands(String message) {
+        // Handle formatting commands here and convert them to HTML or other formatting codes
+        message = message.replaceAll("\\*(.*?)\\*", "<b>$1</b>"); // Bold
+        message = message.replaceAll("_@(.*?)@_", "<u>$1</u>"); // Underline
+        message = message.replaceAll("&@(.*?)@", "<i>$1</i>"); // Italicize
+        message = message.replaceAll("-c@(.*?)@(.*?)@-", "<font color='$1'>$2</font>"); // Change color
+        return message;
+    }
+    
 }
