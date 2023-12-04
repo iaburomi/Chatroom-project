@@ -1,6 +1,6 @@
 <table><tr><td> <em>Assignment: </em> IT114 Chatroom Milestone3</td></tr>
 <tr><td> <em>Student: </em> Issa Aburomi (iaa47)</td></tr>
-<tr><td> <em>Generated: </em> 12/3/2023 10:22:45 PM</td></tr>
+<tr><td> <em>Generated: </em> 12/4/2023 3:58:36 PM</td></tr>
 <tr><td> <em>Grading Link: </em> <a rel="noreferrer noopener" href="https://learn.ethereallab.app/homework/IT114-003-F23/it114-chatroom-milestone3/grade/iaa47" target="_blank">Grading</a></td></tr></table>
 <table><tr><td> <em>Instructions: </em> <p>Implement the features from Milestone3 from the proposal document:&nbsp;&nbsp;<a href="https://docs.google.com/document/d/1ONmvEvel97GTFPGfVwwQC96xSsobbSbk56145XizQG4/view">https://docs.google.com/document/d/1ONmvEvel97GTFPGfVwwQC96xSsobbSbk56145XizQG4/view</a></p>
 </td></tr></table>
@@ -21,7 +21,7 @@
 <tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-03T00.18.38Screenshot%202023-12-02%20191831.png.webp?alt=media&token=95193434-c038-4191-bc36-eb9cd7d953bd"/></td></tr>
 <tr><td> <em>Caption:</em> <p>Created Room<br></p>
 </td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-03T00.21.26Screenshot%202023-12-02%20192110.png.webp?alt=media&token=68bca040-afaf-4e1d-8c8c-17ff27128995"/></td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-04T16.50.41Screenshot%202023-12-04%20115026.png.webp?alt=media&token=66eaf701-4b41-4857-832d-e61a38ae7b7a"/></td></tr>
 <tr><td> <em>Caption:</em> <p>Enter Key<br></p>
 </td></tr>
 </table></td></tr>
@@ -36,7 +36,7 @@
 <tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-03T23.48.26Screenshot%202023-12-03%20184756.png.webp?alt=media&token=40c5b1be-80f9-40dc-96cf-9cce9dcf7e77"/></td></tr>
 <tr><td> <em>Caption:</em> <p>Flip and roll case<br></p>
 </td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-03T23.48.30Screenshot%202023-12-03%20184814.png.webp?alt=media&token=2b23502d-2501-4188-bd94-c96bdec1fca1"/></td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-04T16.52.39Screenshot%202023-12-04%20115234.png.webp?alt=media&token=17b6da1e-f144-4b3c-802a-6c9d09c8c5b1"/></td></tr>
 <tr><td> <em>Caption:</em> <p>Rest of Roll case<br></p>
 </td></tr>
 <tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-03T23.52.33Screenshot%202023-12-03%20185156.png.webp?alt=media&token=0af7536c-cf67-4f8b-90ba-f5056638709a"/></td></tr>
@@ -72,17 +72,28 @@
 <tr><td> <em>Sub-Task 3: </em> Briefly explain the code logic of how this was achieved</td></tr>
 <tr><td> <em>Response:</em> <p><span id="docs-internal-guid-bb21a22a-7fff-4d59-3187-88d9a47e930e"><span style="font-size: 10.5pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal;<br>font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;">This code handles the processing of<br>incoming messages in the MESSAGE case. It checks if the currentRoom is not<br>null, ensuring that the client is in a room. If the message starts<br>with &quot;@&quot; indicating a private message, it extracts the receiver&#39;s username and the<br>private message content. It then looks for the receiver in the current room<br>using getClientByName. If found, it uses sendMessageToPrivateParticipants to send the private message to<br>both the sender and the receiver. If the receiver is not found, it<br>sends an error message. If the message doesn&#39;t start with &quot;@&quot;, it broadcasts<br>the message to the entire room. If the currentRoom is null, it suggests<br>migrating the client to the lobby room.</span></span><br><br></p><br></td></tr>
 </table></td></tr>
-<table><tr><td> <em>Deliverable 6: </em> Mute/Unmute </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707795-a9c94a71-7871-4572-bfae-ad636f8f8474.png"></td></tr>
+<table><tr><td> <em>Deliverable 6: </em> Mute/Unmute </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Add screenshots demoing this feature</td></tr>
-<tr><td><table><tr><td>Missing Image</td></tr>
-<tr><td> <em>Caption:</em> (missing)</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-04T20.49.36Screenshot%202023-12-04%20154930.png.webp?alt=media&token=6a42eacb-ec91-4b38-ad4e-41e334687899"/></td></tr>
+<tr><td> <em>Caption:</em> <p>mute/unmute commands<br></p>
+</td></tr>
 </table></td></tr>
 <tr><td> <em>Sub-Task 2: </em> Add screenshots of the code snippets that achieve this feature</td></tr>
-<tr><td><table><tr><td>Missing Image</td></tr>
-<tr><td> <em>Caption:</em> (missing)</td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-04T20.55.05Screenshot%202023-12-04%20155459.png.webp?alt=media&token=19d3ebd0-4116-4da8-a907-2ae8c65aa15f"/></td></tr>
+<tr><td> <em>Caption:</em> <p>Mute/unmute code<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-04T20.56.34Screenshot%202023-12-04%20155555.png.webp?alt=media&token=b1d7d273-2a7c-4798-8f47-c74adbe87996"/></td></tr>
+<tr><td> <em>Caption:</em> <p>Mute/unmute code<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-04T20.56.40Screenshot%202023-12-04%20155609.png.webp?alt=media&token=4d8cd0e4-95e6-49f7-aa9c-dc2c255288aa"/></td></tr>
+<tr><td> <em>Caption:</em> <p>Mute/unmute code<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-04T20.56.43Screenshot%202023-12-04%20155626.png.webp?alt=media&token=e3d5ad0b-b8c6-4500-a875-d0f2fabd913e"/></td></tr>
+<tr><td> <em>Caption:</em> <p>Mute/unmute code<br></p>
+</td></tr>
 </table></td></tr>
 <tr><td> <em>Sub-Task 3: </em> Briefly explain the code logic of how this was achieved</td></tr>
-<tr><td> <em>Response:</em> <p>(missing)</p><br></td></tr>
+<tr><td> <em>Response:</em> <p><span id="docs-internal-guid-a979f079-7fff-e73a-f0a5-6a8ab8c5eb2d"><span style="font-size: 10.5pt; font-family: Roboto, sans-serif; color: rgb(55, 65, 81); background-color: transparent;<br>font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;">The modified<br>code introduces a refined logic for handling chat messages in the processPayload method.<br>It introduces a new method, processChatMessage, which distinguishes between normal messages, private messages,<br>and mute/unmute commands. The code checks if a message begins with /mute or<br>/unmute, extracts the target username, and invokes corresponding methods to handle mute and<br>unmute commands. This enhancement enables the implementation of server-side mute and unmute functionality<br>in the chatroom.</span></span><br></p><br></td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 7: </em> Misc </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Pull request from milestone3 to main</td></tr>
