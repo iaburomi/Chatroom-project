@@ -1,6 +1,6 @@
 <table><tr><td> <em>Assignment: </em> IT114 Chatroom Milestone3</td></tr>
 <tr><td> <em>Student: </em> Issa Aburomi (iaa47)</td></tr>
-<tr><td> <em>Generated: </em> 12/4/2023 3:58:36 PM</td></tr>
+<tr><td> <em>Generated: </em> 12/7/2023 12:14:12 PM</td></tr>
 <tr><td> <em>Grading Link: </em> <a rel="noreferrer noopener" href="https://learn.ethereallab.app/homework/IT114-003-F23/it114-chatroom-milestone3/grade/iaa47" target="_blank">Grading</a></td></tr></table>
 <table><tr><td> <em>Instructions: </em> <p>Implement the features from Milestone3 from the proposal document:&nbsp;&nbsp;<a href="https://docs.google.com/document/d/1ONmvEvel97GTFPGfVwwQC96xSsobbSbk56145XizQG4/view">https://docs.google.com/document/d/1ONmvEvel97GTFPGfVwwQC96xSsobbSbk56145XizQG4/view</a></p>
 </td></tr></table>
@@ -74,21 +74,24 @@
 </table></td></tr>
 <table><tr><td> <em>Deliverable 6: </em> Mute/Unmute </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Add screenshots demoing this feature</td></tr>
-<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-04T20.49.36Screenshot%202023-12-04%20154930.png.webp?alt=media&token=6a42eacb-ec91-4b38-ad4e-41e334687899"/></td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-07T17.14.04Screenshot%202023-12-07%20121359.png.webp?alt=media&token=21223381-2817-410a-8040-636d3ba576fd"/></td></tr>
 <tr><td> <em>Caption:</em> <p>mute/unmute commands<br></p>
 </td></tr>
 </table></td></tr>
 <tr><td> <em>Sub-Task 2: </em> Add screenshots of the code snippets that achieve this feature</td></tr>
-<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-04T20.55.05Screenshot%202023-12-04%20155459.png.webp?alt=media&token=19d3ebd0-4116-4da8-a907-2ae8c65aa15f"/></td></tr>
+<tr><td><table><tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-07T17.12.28Screenshot%202023-12-07%20120807.png.webp?alt=media&token=2317ae46-f1b7-4ec5-b1a2-79c56b69d8f5"/></td></tr>
 <tr><td> <em>Caption:</em> <p>Mute/unmute code<br></p>
 </td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-04T20.56.34Screenshot%202023-12-04%20155555.png.webp?alt=media&token=b1d7d273-2a7c-4798-8f47-c74adbe87996"/></td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-07T17.12.39Screenshot%202023-12-07%20120828.png.webp?alt=media&token=de4c5b81-2e1c-49cd-a267-a04bceedc422"/></td></tr>
 <tr><td> <em>Caption:</em> <p>Mute/unmute code<br></p>
 </td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-04T20.56.40Screenshot%202023-12-04%20155609.png.webp?alt=media&token=4d8cd0e4-95e6-49f7-aa9c-dc2c255288aa"/></td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-07T17.12.42Screenshot%202023-12-07%20120841.png.webp?alt=media&token=86bc3757-2cbd-4dd7-bc4b-dc09428f8f8b"/></td></tr>
 <tr><td> <em>Caption:</em> <p>Mute/unmute code<br></p>
 </td></tr>
-<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-04T20.56.43Screenshot%202023-12-04%20155626.png.webp?alt=media&token=e3d5ad0b-b8c6-4500-a875-d0f2fabd913e"/></td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-07T17.12.49Screenshot%202023-12-07%20120911.png.webp?alt=media&token=f21eefc4-1c41-4665-a283-9fe0c8ef0733"/></td></tr>
+<tr><td> <em>Caption:</em> <p>Mute/unmute code<br></p>
+</td></tr>
+<tr><td><img width="768px" src="https://firebasestorage.googleapis.com/v0/b/learn-e1de9.appspot.com/o/assignments%2Fiaa47%2F2023-12-07T17.12.54Screenshot%202023-12-07%20120930.png.webp?alt=media&token=ff9442c8-db63-4cff-b9c6-f86eaaf3db11"/></td></tr>
 <tr><td> <em>Caption:</em> <p>Mute/unmute code<br></p>
 </td></tr>
 </table></td></tr>
